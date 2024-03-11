@@ -1,95 +1,115 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import * as React from 'react';
+import {
+    AdaptivityProvider,
+    ConfigProvider,
+    AppRoot,
+    SplitLayout,
+    SplitCol,
+    View,
+    Panel,
+    PanelHeader,
+    Header,
+    Group,
+    SimpleCell,
+    usePlatform,
+    RichCell,
+    CellButton,
+    Button,
+    Calendar,
+    Alert,
+    Title,
+    Avatar,
+    Spacing,
+    SegmentedControl,
+    Pagination, ButtonGroup, Text, Root, FormLayoutGroup, Input, platform, Appearance, AppearanceProvider,
+} from "@vkontakte/vkui";
+import "@vkontakte/vkui/dist/vkui.css";
+import {useState} from "react";
+import {Platform} from "@vkontakte/vkui/src/lib/platform";
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const App = () => {
+    const [id, setId] = useState("index")
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    return <>
+        <Root activeView={"main"}>
+            <View activePanel={id} id={"main"}>
+                <Panel id={"index"}>
+                    <PanelHeader>
+                        Главная
+                    </PanelHeader>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+                    <SplitLayout>
+                        <SplitCol>
+                            <Group>
+                                <ButtonGroup>
+                                    <Button onClick={() => setId("login")} size={"m"} mode={"primary"}>
+                                        Вход
+                                    </Button>
+                                    <Button onClick={() => setId("register")} size={"m"} mode={"secondary"}>
+                                        Регистрация
+                                    </Button>
+                                </ButtonGroup>
+                            </Group>
+                        </SplitCol>
+                    </SplitLayout>
+                </Panel>
+                <Panel id={"login"}>
+                    <PanelHeader>
+                        Вход
+                    </PanelHeader>
+                    <FormLayoutGroup mode={"vertical"}>
+                        <Text>
+                            Вход
+                        </Text>
+                        <ButtonGroup>
+                            <Button onClick={() => setId("login")} size={"m"} mode={"primary"}>
+                                Войти
+                            </Button>
+                            <Button onClick={() => setId("register")} size={"m"} mode={"secondary"}>
+                                Регистрация
+                            </Button>
+                        </ButtonGroup>
+                        <Button onClick={() => setId("index")} size={"m"} mode={"link"}>
+                            Назад
+                        </Button>
+                    </FormLayoutGroup>
+                </Panel>
+                <Panel id={"register"}>
+                    <PanelHeader>
+                        Регистрация
+                    </PanelHeader>
+                    <FormLayoutGroup mode={"vertical"}>
+                        <Text>
+                            Регистрация
+                        </Text>
+                        <ButtonGroup>
+                            <Button onClick={() => setId("register")} size={"m"} mode={"primary"}>
+                                Зарегистрироваться
+                            </Button>
+                            <Button onClick={() => setId("login")} size={"m"} mode={"secondary"}>
+                                Вход
+                            </Button>
+                        </ButtonGroup>
+                        <Button onClick={() => setId("index")} size={"m"} mode={"link"}>
+                            Назад
+                        </Button>
+                    </FormLayoutGroup>
+                </Panel>
+            </View>
+        </Root>
+    </>
+};
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+export default () => {
+    return <AppRoot layout={"card"}>
+        <ConfigProvider platform={Platform.IOS}>
+            <AdaptivityProvider >
+                <AppearanceProvider value={Appearance.LIGHT}>
+                    <App />
+                </AppearanceProvider>
+            </AdaptivityProvider>
+        </ConfigProvider>
+    </AppRoot>
 }
