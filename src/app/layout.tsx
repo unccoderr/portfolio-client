@@ -1,23 +1,16 @@
-"use client"
+import React from "react";
 
-import {ReactNode} from "react";
+import "./globals.css"
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-import {AdaptivityProvider, Appearance, AppearanceProvider, AppRoot, ConfigProvider} from "@vkontakte/vkui";
-import "@vkontakte/vkui/dist/vkui.css";
-const RootLayout = ({ children }: Readonly<{ children: ReactNode; }>) => {
-    return <html lang="en">
+const RootLayout = ({ children }: React.PropsWithChildren) => (
+    <html lang="en">
         <body>
-            <AppRoot layout={"card"}>
-                <ConfigProvider platform={"ios"}>
-                    <AdaptivityProvider >
-                        <AppearanceProvider value={Appearance.LIGHT}>
-                            {children}
-                        </AppearanceProvider>
-                    </AdaptivityProvider>
-                </ConfigProvider>
-            </AppRoot>
+            <AntdRegistry>
+                {children}
+            </AntdRegistry>
         </body>
     </html>
-}
+);
 
 export default RootLayout;

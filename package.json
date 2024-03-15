@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vkontakte/vkui": "^6.0.0",
+    "@ant-design/icons": "^5.3.1",
+    "@ant-design/nextjs-registry": "^1.0.0",
+    "antd": "^5.15.2",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"
