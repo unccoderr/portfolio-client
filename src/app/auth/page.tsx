@@ -2,4 +2,6 @@
 
 import {AuthPage} from "@/core";
 
-export default () => <AuthPage />
+const _AuthPage = () => <AuthPage />
+
+export default _AuthPage
