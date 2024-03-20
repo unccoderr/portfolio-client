@@ -2,4 +2,6 @@
 
 import {MainPage} from "@/core";
 
-export default () => <MainPage />
+const IndexPage = () => <MainPage />;
+
+export default IndexPage;
