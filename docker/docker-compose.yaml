@@ -1,0 +1,11 @@
+version: "3"
+
+
+services:
+    with-docker-multi-env-development:
+        build:
+            context: ../
+            dockerfile: docker/Dockerfile
+        image: with-docker-multi-env-development
+        ports:
+            - "3000:3000"
